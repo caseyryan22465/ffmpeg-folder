@@ -37,13 +37,29 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Setup1.msi"
+        "OutputFilename" = "8:Release\\ffmpeg-folder-installer.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -53,6 +69,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -142,7 +174,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ffmpeg-folder"
         "ProductCode" = "8:{95A34261-B11C-4672-A7E9-E6EEC8B25054}"
-        "PackageCode" = "8:{50DF3141-903A-4772-9507-B7BBA6A451E6}"
+        "PackageCode" = "8:{C7180A72-7768-4B54-A8F1-D6228432D21C}"
         "UpgradeCode" = "8:{C83EF9CF-9E9D-4323-8955-42CC63806076}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -735,7 +767,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A00CBDA456E34963A25D88FD2C1F8D98"
             {
-            "SourcePath" = "8:..\\Debug\\ffmpeg-folder.exe"
+            "SourcePath" = "8:..\\Release\\ffmpeg-folder.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_842BAC660E8742F79ED791B00E907B9F"
