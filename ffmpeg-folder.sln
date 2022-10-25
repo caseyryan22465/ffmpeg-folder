@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1972
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ffmpeg-folder", "ffmpeg-folder\ffmpeg-folder.vcxproj", "{289C973E-96FA-4691-B5EC-8979B1EBF42D}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ffmpeg-folder-installer", "Setup1\Setup1.vdproj", "{06988612-D4D4-4F94-92B3-0832CBF439BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,11 @@ Global
 		{289C973E-96FA-4691-B5EC-8979B1EBF42D}.Release|x64.Build.0 = Release|x64
 		{289C973E-96FA-4691-B5EC-8979B1EBF42D}.Release|x86.ActiveCfg = Release|Win32
 		{289C973E-96FA-4691-B5EC-8979B1EBF42D}.Release|x86.Build.0 = Release|Win32
+		{06988612-D4D4-4F94-92B3-0832CBF439BC}.Debug|x64.ActiveCfg = Debug
+		{06988612-D4D4-4F94-92B3-0832CBF439BC}.Debug|x86.ActiveCfg = Debug
+		{06988612-D4D4-4F94-92B3-0832CBF439BC}.Debug|x86.Build.0 = Debug
+		{06988612-D4D4-4F94-92B3-0832CBF439BC}.Release|x64.ActiveCfg = Release
+		{06988612-D4D4-4F94-92B3-0832CBF439BC}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
