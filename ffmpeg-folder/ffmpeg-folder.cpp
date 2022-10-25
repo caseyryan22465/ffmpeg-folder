@@ -120,7 +120,9 @@ int main(int argc, char ** argv)
 						}
 						else {
 							CloseHandle(hFile1);
-							HANDLE hFile2 = CreateFile(string_to_wstring(outfilepath.string()).c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+							std::filesystem::remove(dir_entry.path());
+							std::filesystem::rename(outfilepath, dir_entry.path());
+							HANDLE hFile2 = CreateFile(string_to_wstring(dir_entry.path().string()).c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 							if (hFile2 == INVALID_HANDLE_VALUE) {
 								std::cout << "Couldn't open handle2" << std::endl;
 							}
@@ -135,8 +137,7 @@ int main(int argc, char ** argv)
 							}
 						}
 					}
-					
-					std::filesystem::remove(dir_entry.path());
+					//dont delete down here because delete in the file time area. If you dont delete in the file time area because of an error, want to preserve original metadata anyways
 				}
 				else {
 					std::filesystem::remove(outfilepath);
