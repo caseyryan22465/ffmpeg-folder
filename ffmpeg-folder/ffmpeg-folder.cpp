@@ -9,18 +9,19 @@
 #include <stdexcept>
 #include <windows.h>
 #include <stdio.h>
+#include <fileapi.h>
 
 volatile bool requeststop = false;
 
 BOOL WINAPI CtrlHandler(_In_ DWORD dwtype) {
 	switch (dwtype) {
 	case CTRL_C_EVENT:
-		std::cout << std::endl << "CTRL C, Finishing up current encode, then breaking" << std::endl;
+		std::cout << std::endl << "CTRL C, Cleaning up" << std::endl;
 		requeststop = true;
 		return TRUE;
 
 	case CTRL_BREAK_EVENT:
-		std::cout << std::endl << "CTRL BREAK, Finishing up current encode, then breaking" << std::endl;
+		std::cout << std::endl << "CTRL BREAK, Cleaning up" << std::endl;
 		requeststop = true;
 		return TRUE;
 
@@ -52,6 +53,11 @@ std::string spaceSaved(int difference) {
 		saved << difference << " Bytes";
 	}
 	return saved.str();
+}
+
+//https://stackoverflow.com/questions/38154985/string-to-lpcwstr-in-c
+std::wstring string_to_wstring(const std::string& text) {
+	return std::wstring(text.begin(), text.end());
 }
 
 int main(int argc, char ** argv)
@@ -101,6 +107,35 @@ int main(int argc, char ** argv)
 				if (!requeststop) {
 					//delete stuff here
 					std::cout << "Filesize before: " << spaceSaved(dir_entry.file_size()) << ", Filesize after: " << spaceSaved(newsize) << std::endl;
+					HANDLE hFile1 = CreateFile(string_to_wstring(dir_entry.path().string()).c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+					if(hFile1 == INVALID_HANDLE_VALUE){
+						std::cout << "Couldn't open handle1" << std::endl;
+					}
+					else {
+						FILETIME created;
+						FILETIME accessed;
+						FILETIME written;
+						if (!GetFileTime(hFile1, &created, &accessed, &written)) {
+							std::cout << "Couldn't get file time" << std::endl;
+						}
+						else {
+							CloseHandle(hFile1);
+							HANDLE hFile2 = CreateFile(string_to_wstring(outfilepath.string()).c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+							if (hFile2 == INVALID_HANDLE_VALUE) {
+								std::cout << "Couldn't open handle2" << std::endl;
+							}
+							else {
+								if (!SetFileTime(hFile2, &created, &accessed, &written)) {
+									std::cout << "Couldn't set file time" << std::endl;
+								}
+								else {
+									std::cout << "Set file time" << std::endl;//TODO: Remove
+								}
+								CloseHandle(hFile2);
+							}
+						}
+					}
+					
 					std::filesystem::remove(dir_entry.path());
 				}
 				else {
